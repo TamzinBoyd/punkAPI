@@ -4,8 +4,6 @@ import styles from "./CardList.module.scss";
 
 const CardList = (props) => {
   const { searchedBeers } = props;
-  // currently logs undefined
-  console.log(searchedBeers);
 
   const getCardJsx = (beer) => (
     <div>

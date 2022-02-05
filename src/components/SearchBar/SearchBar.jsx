@@ -13,6 +13,7 @@ const SearchBar = (props) => {
         type="text"
         placeholder={placeholder}
         // change searchTerm state to value of input box
+        // onChange={(e) => setSearchTerm(e.target.value.toUpperCase())}
         onChange={(e) => setSearchTerm(e.target.value.toUpperCase())}
       />
     </div>
