@@ -5,12 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { getBeers } from "./services/beers.service";
 import CardList from "./components/CardList/CardList";
 
-import SearchBar from "./components/SearchBar";
-
-// user enters letters, if user used backspace or delete - and state changes, need it to re-check and look for new beers - so expand on current array of beers to amtch search term
-
-//at the minute the search term is updating ocrrectly, but the card list isn'r changing to reflect this
-
+// user enters letters, however search doesn't update as they delete letters
 const App = () => {
   const [masterBeers, setMasterBeers] = useState(false);
   const [searchTerm, setSearchTerm] = useState(false);
@@ -39,7 +34,6 @@ const App = () => {
       setSearchedBeers(masterBeers);
       return;
     }
-
     getFilteredBeers();
     // only run when searchTerm exists
   }, [searchTerm]);
@@ -86,7 +80,6 @@ const App = () => {
   return (
     <div className="App">
       <NavBar setSearchTerm={setSearchTerm} setABVFilter={setABVFilter} />
-
       {/* if state contains value then render the comp */}
       {searchedBeers && <CardList searchedBeers={searchedBeers} />}
     </div>
