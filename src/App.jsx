@@ -16,6 +16,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState(false);
   const [searchedBeers, setSearchedBeers] = useState(false);
   const [ABVFilter, setABVFilter] = useState(false);
+  const [ABVBeers, setABVBeers] = useState("");
 
   // pass value of input box into api list & update state to results
   const updateBeerList = async () => {
@@ -33,11 +34,8 @@ const App = () => {
     if (!masterBeers) {
       return;
     }
+    // only run if searchTerm doesn't have a value
     if (searchTerm.length == 0) {
-      setSearchedBeers(masterBeers);
-      return;
-    }
-    if (searchTerm !== searchTerm) {
       setSearchedBeers(masterBeers);
       return;
     }
@@ -47,7 +45,11 @@ const App = () => {
   }, [searchTerm]);
 
   useEffect(() => {
-    filterByABV();
+    if (ABVFilter === true) {
+      // only run when filter has been applied then rest searched beers to master list
+      filterByABV();
+      setSearchedBeers(masterBeers);
+    }
   }, [ABVFilter]);
 
   // filter beers based on search entered by user
@@ -58,14 +60,28 @@ const App = () => {
     setSearchedBeers(filteredBeers);
   };
 
+  // filter beers based on radio button - NOT WORKING, JUST SHOWING RESET BEERS
   const filterByABV = () => {
-    setSearchedBeers(masterBeers);
-    console.log(searchedBeers);
     const filteredByABVBeers = searchedBeers.filter((beer) => {
       return beer.abv > 6;
     });
-    setSearchedBeers(filterByABV);
+
+    setABVBeers(filteredByABVBeers);
+    // currently returns no value
+    console.log(ABVBeers);
   };
+
+  // const filterByABV = () => {
+  //   const filteredByABVBeers = [];
+  //   searchedBeers.forEach((beer) => {
+  //     if (beer.abv > 6) {
+  //       filteredByABVBeers.push(beer);
+  //     } else {
+  //       return;
+  //     }
+  //   });
+
+  // };
 
   return (
     <div className="App">
