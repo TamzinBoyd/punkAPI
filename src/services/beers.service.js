@@ -13,6 +13,7 @@ export const getABVBeers = () => {
   return fetch(`${API_URL}?abv_gt=6`)
     .then((response) => response.json())
     .then((respJason) => {
+      // console.log(respJason); - returns correctly
       return respJason;
     })
     .catch((error) => console.error(error));

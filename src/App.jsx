@@ -10,6 +10,7 @@ const App = () => {
   const [masterBeers, setMasterBeers] = useState(false);
   const [searchTerm, setSearchTerm] = useState(false);
   const [searchedBeers, setSearchedBeers] = useState(false);
+
   const [ABVFilter, setABVFilter] = useState(false);
   const [ABVBeers, setABVBeers] = useState("");
 
@@ -19,38 +20,50 @@ const App = () => {
     setMasterBeers(beerList);
     setSearchedBeers(beerList);
   };
+  useEffect(() => {
+    updateBeerList();
+  }, []);
 
+  // check searchbox isn't empty when searchTerm is edited ////////
+  useEffect(() => {
+    // if api results not yet returned then don't do anything
+    if (!masterBeers) {
+      return;
+    }
+    if (searchTerm.length === 0) {
+      setSearchedBeers(masterBeers);
+    }
+  }, [searchTerm]);
+
+  // get ABV > 6 list of beers from API - works correctly /////////////////////
   const updateABVBeers = async () => {
     if (ABVFilter === true) {
       const ABVBeerList = await getABVBeers();
       return setABVBeers(ABVBeerList);
     }
   };
-  console.log(ABVBeers);
-  updateABVBeers();
-
   useEffect(() => {
-    updateBeerList();
-  }, []);
+    updateABVBeers();
+  }, [ABVFilter]);
 
-  useEffect(() => {
-    // if equal to false, don't do anything, otherwise run the function
-    if (!masterBeers) {
-      return;
+  // Generate HTML for Cards - not working ///////////////
+  const renderCards = () => {
+    if (searchTerm === false) {
+      // return <CardList searchedBeers={masterBeers} />;
+    } else if (ABVBeers) {
+      console.log(ABVBeers);
+      return <CardList searchedBeers={ABVBeers} />;
+    } else {
+      console.log(masterBeers);
     }
-    // only run if searchTerm doesn't have a value
-    if (searchTerm.length === 0) {
-      setSearchedBeers(masterBeers);
-      return;
-    }
-    // only run when searchTerm exists
-  }, [searchTerm]);
+  };
 
   return (
     <div className="App">
       <NavBar setSearchTerm={setSearchTerm} setABVFilter={setABVFilter} />
       {/* if state contains value then render the comp */}
-      {searchedBeers && <CardList searchedBeers={searchedBeers} />}
+      {/* {searchedBeers && <CardList searchedBeers={searchedBeers} />} */}
+      {renderCards()}
     </div>
   );
 };
