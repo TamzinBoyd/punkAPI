@@ -13,6 +13,8 @@ const App = () => {
 
   const [ABVFilter, setABVFilter] = useState(false);
   const [ABVBeers, setABVBeers] = useState("");
+  const [agedFilter, setAgedFilter] = useState(false);
+  const [agedBeers, setAgedBeers] = useState("");
 
   // pass value of input box into api list & update state to results
   const updateBeerList = async () => {
@@ -46,6 +48,17 @@ const App = () => {
     updateABVBeers();
   }, [ABVFilter]);
 
+  // get acidity list of beers from API - works correctly /////////////////////
+  const updateAgedBeers = async () => {
+    if (ABVFilter === true) {
+      const agedBeersList = await getBrewedBeers();
+      return setAgedBeers(agedBeersList);
+    }
+  };
+  useEffect(() => {
+    updateAgedBeers();
+  }, [agedFilter]);
+
   // Generate HTML for Cards - not working ///////////////
   const renderCards = () => {
     if (searchTerm === false) {
@@ -53,8 +66,8 @@ const App = () => {
     } else if (ABVBeers) {
       console.log(ABVBeers);
       return <CardList searchedBeers={ABVBeers} />;
-    } else {
-      console.log(masterBeers);
+    } else if (agedBeers) {
+      console.log(agedBeers);
     }
   };
 
@@ -75,16 +88,8 @@ export default App;
 //     // only run when filter has been applied then rest searched beers to master list
 //     filterByABV();
 //     setSearchedBeers(masterBeers);
-//   }
+//
 // }, [ABVFilter]);
-
-// filter beers based on search entered by user
-// const getFilteredBeers = () => {
-//   const filteredBeers = searchedBeers.filter((beer) => {
-//     return beer.name.toUpperCase().includes(searchTerm);
-//   });
-//   setSearchedBeers(filteredBeers);
-// };
 
 // filter beers based on radio button - NOT WORKING, JUST SHOWING RESET BEERS
 // const filterByABV = () => {
