@@ -1,32 +1,27 @@
-Create a searchable beer database using an api.
+BRIEF
+Create a searchable beer database using a public api.
 Needs to update page as you enter a letter in the search bar.
 
-ADDITIONAL CHALLENHE
+FIRST STEPS
+
+I broke down the project based on components:
+NavBar
+Search Box (need to pass in search term from input box and return matching beers)
+Filter List (need to accept value via tick box and return list of matching beers)
+Card List - render Card based on search/filter criteria, accept API
+Card - HTML for each card
+Not Found
+Services to hold api request
+
+I knew I'd want to use state to store the API fetch results but didn't want to make a separate fetch request each time the user entered a letter in the search box, so I set the masterBeers to the results of the API.
+
+For searching I needed to take the value of the input box. I needed the page to be responsive based on this so set it to state and set up a useEffect to only filter the beers if the search box contained a value.
+
+ADDITIONAL CHALLENGE
 Be able to filter on:
 
 - High Alcohol (ABV > 6%)
 - Classic range (brewed before 2010)
 - High acidity (ph lower than 4)
 
-FIRST STEPS
-
-1. Broke down into components:
-   NavBar
-   Search Box (need to pass in search term from input box and return matching beers)
-   Filter List (need to accept value via tick box and return list of matching beers)
-
-Main
-Card List - render Card based on search/filter criteria, accept API
-Card - HTML for each card
-
-Other
-Not Found
-Services to hold api request
-
-<!-- filtering -->
-
-1. get results from API
-2. Render beers based on these results
-3. WHEN user enters something in the input box, then re-render the beers based on the search term,
-   copying the beers into a new state
-   problem is it updates the state
+For filtering I wanted radio buttons so the user could only enter 1 filter value at a time. After looking at the API documentation I knew there was a pre-determined filter for ABV and acidity, so I set up a separate API request to just pull through these, and passed them into a new state.

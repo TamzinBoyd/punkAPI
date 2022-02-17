@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.module.scss";
 
 import NavBar from "./components/NavBar/NavBar";
-import { getBeers } from "./services/beers.service";
+import { getBeers, getABVBeers } from "./services/beers.service";
 import CardList from "./components/CardList/CardList";
 
 // user enters letters, however search doesn't update as they delete letters
@@ -20,6 +20,15 @@ const App = () => {
     setSearchedBeers(beerList);
   };
 
+  const updateABVBeers = async () => {
+    if (ABVFilter === true) {
+      const ABVBeerList = await getABVBeers();
+      return setABVBeers(ABVBeerList);
+    }
+  };
+  console.log(ABVBeers);
+  updateABVBeers();
+
   useEffect(() => {
     updateBeerList();
   }, []);
@@ -30,52 +39,12 @@ const App = () => {
       return;
     }
     // only run if searchTerm doesn't have a value
-    if (searchTerm.length == 0) {
+    if (searchTerm.length === 0) {
       setSearchedBeers(masterBeers);
       return;
     }
-    getFilteredBeers();
     // only run when searchTerm exists
   }, [searchTerm]);
-
-  useEffect(() => {
-    if (ABVFilter === true) {
-      // only run when filter has been applied then rest searched beers to master list
-      filterByABV();
-      setSearchedBeers(masterBeers);
-    }
-  }, [ABVFilter]);
-
-  // filter beers based on search entered by user
-  const getFilteredBeers = () => {
-    const filteredBeers = searchedBeers.filter((beer) => {
-      return beer.name.toUpperCase().includes(searchTerm);
-    });
-    setSearchedBeers(filteredBeers);
-  };
-
-  // filter beers based on radio button - NOT WORKING, JUST SHOWING RESET BEERS
-  const filterByABV = () => {
-    const filteredByABVBeers = searchedBeers.filter((beer) => {
-      return beer.abv > 6;
-    });
-
-    setABVBeers(filteredByABVBeers);
-    // currently returns no value
-    console.log(ABVBeers);
-  };
-
-  // const filterByABV = () => {
-  //   const filteredByABVBeers = [];
-  //   searchedBeers.forEach((beer) => {
-  //     if (beer.abv > 6) {
-  //       filteredByABVBeers.push(beer);
-  //     } else {
-  //       return;
-  //     }
-  //   });
-
-  // };
 
   return (
     <div className="App">
@@ -87,3 +56,42 @@ const App = () => {
 };
 
 export default App;
+
+// useEffect(() => {
+//   if (ABVFilter === true) {
+//     // only run when filter has been applied then rest searched beers to master list
+//     filterByABV();
+//     setSearchedBeers(masterBeers);
+//   }
+// }, [ABVFilter]);
+
+// filter beers based on search entered by user
+// const getFilteredBeers = () => {
+//   const filteredBeers = searchedBeers.filter((beer) => {
+//     return beer.name.toUpperCase().includes(searchTerm);
+//   });
+//   setSearchedBeers(filteredBeers);
+// };
+
+// filter beers based on radio button - NOT WORKING, JUST SHOWING RESET BEERS
+// const filterByABV = () => {
+//   const filteredByABVBeers = searchedBeers.filter((beer) => {
+//     return beer.abv > 6;
+//   });
+
+//   setABVBeers(filteredByABVBeers);
+//   // currently returns no value
+//   console.log(ABVBeers);
+// };
+
+// const filterByABV = () => {
+//   const filteredByABVBeers = [];
+//   searchedBeers.forEach((beer) => {
+//     if (beer.abv > 6) {
+//       filteredByABVBeers.push(beer);
+//     } else {
+//       return;
+//     }
+//   });
+
+// };
