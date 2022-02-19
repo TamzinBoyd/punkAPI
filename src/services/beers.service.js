@@ -9,11 +9,14 @@ export const getBeers = () => {
     .catch((error) => console.error(error));
 };
 
-export const getABVBeers = () => {
-  return fetch(`${API_URL}?abv_gt=6`)
+// Focus on building that queryString and sending the request off to Punk API to handle your searching/filtering for you :)
+export const getFilteredBeers = (abv, age, searchTerm) => {
+  return fetch(
+    `${API_URL}?abv_gt=${abv}&brewed_before=${age}&beer_name=${searchTerm}`
+  )
     .then((response) => response.json())
     .then((respJason) => {
-      // console.log(respJason); - returns correctly
+      console.log(respJason);
       return respJason;
     })
     .catch((error) => console.error(error));

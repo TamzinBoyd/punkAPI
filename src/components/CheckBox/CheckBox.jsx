@@ -1,11 +1,15 @@
 import React from "react";
 
 const CheckBox = (props) => {
-  const { setABVFilter } = props;
+  const { setABVFilter, setAgedFilter } = props;
 
-  const handleClick = (e) => {
+  const handleClickABV = (e) => {
     setABVFilter(true);
   };
+
+  // const handleClickAged = (e) => {
+  //   setAgedFilter(true);
+  // };
 
   return (
     <div>
@@ -14,7 +18,7 @@ const CheckBox = (props) => {
         name="filter"
         value="abv"
         onClick={(e) => {
-          handleClick(e.target.value);
+          handleClickABV(e.target.value);
         }}
       />
 
@@ -22,17 +26,17 @@ const CheckBox = (props) => {
         type="radio"
         name="filter"
         value="tbc"
-        onClick={(e) => {
-          handleClick(e.target.value);
-        }}
+        // onClick={(e) => {
+        //   handleClickAged(e.target.value);
+        // }}
       />
       <input
         type="radio"
         name="filter"
         value="tbc"
-        onClick={(e) => {
-          handleClick(e.target.value);
-        }}
+        // onClick={(e) => {
+        //   handleClick(e.target.value);
+        // }}
       />
     </div>
   );
