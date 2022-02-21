@@ -4,7 +4,8 @@ import SearchBar from "../SearchBar";
 import CheckBox from "../CheckBox/CheckBox";
 
 const NavBar = (props) => {
-  const { setSearchTerm, setABVFilter } = props;
+  const { setSearchTerm, setABVFilter, setAgeFilter, ABVFilter, ageFilter } =
+    props;
   return (
     <div className={styles.navbar}>
       <h1 className={styles.logo}>BREWDOG</h1>
@@ -14,7 +15,12 @@ const NavBar = (props) => {
         setSearchTerm={setSearchTerm}
       />
 
-      <CheckBox setABVFilter={setABVFilter} />
+      <CheckBox
+        setABVFilter={setABVFilter}
+        setAgeFilter={setAgeFilter}
+        ABVFilter={ABVFilter}
+        ageFilter={ageFilter}
+      />
     </div>
   );
 };

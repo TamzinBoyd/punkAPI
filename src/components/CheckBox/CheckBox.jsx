@@ -1,44 +1,54 @@
 import React from "react";
+import styles from "./CheckBox.module.scss";
 
 const CheckBox = (props) => {
-  const { setABVFilter, setAgedFilter } = props;
+  const { setABVFilter, setAgeFilter, ABVFilter, ageFilter } = props;
 
   const handleClickABV = (e) => {
-    setABVFilter(true);
+    if (ABVFilter === true) {
+      setABVFilter(false);
+    } else if (ABVFilter === false) {
+      setABVFilter(true);
+    }
   };
 
-  // const handleClickAged = (e) => {
-  //   setAgedFilter(true);
-  // };
+  const handleClickAge = (e) => {
+    if (ageFilter === true) {
+      setAgeFilter(false);
+    } else if (ageFilter === false) {
+      setAgeFilter(true);
+    }
+  };
 
   return (
-    <div>
-      <input
-        type="radio"
-        name="filter"
-        value="abv"
-        onClick={(e) => {
-          handleClickABV(e.target.value);
-        }}
-      />
+    <form className={styles.container}>
+      <label className={styles.boxes}>
+        <input
+          type="checkbox"
+          onClick={(e) => {
+            handleClickABV(e.target.value);
+          }}
+        />
+        <span>Filter for beers over 6% ABV</span>
+      </label>
 
+      <label className={styles.boxes}>
+        <input
+          type="checkbox"
+          onClick={(e) => {
+            handleClickAge(e.target.value);
+          }}
+        />
+        <span className={styles.test}>Filter for beers brewed before 2010</span>
+      </label>
       <input
-        type="radio"
-        name="filter"
-        value="tbc"
-        // onClick={(e) => {
-        //   handleClickAged(e.target.value);
-        // }}
-      />
-      <input
-        type="radio"
-        name="filter"
-        value="tbc"
+        type="checkbox"
+
         // onClick={(e) => {
         //   handleClick(e.target.value);
         // }}
       />
-    </div>
+    </form>
   );
 };
 
