@@ -26,39 +26,7 @@ Be able to filter on:
 
 For filtering I wanted radio buttons so the user could only enter 1 filter value at a time. After looking at the API documentation I knew there was a pre-determined filter for ABV and acidity, so I set up a separate API request to just pull through these, and passed them into a new state.
 
-
-  const [ABVFilter, setABVFilter] = useState(false);
-  const [ABVBeers, setABVBeers] = useState("");
-  const [agedFilter, setAgedFilter] = useState(false);
-  const [agedBeers, setAgedBeers] = useState("");
-
-  
-// useEffect(() => {
-//   if (ABVFilter === true) {
-//     // only run when filter has been applied then rest searched beers to master list
-//     filterByABV();
-//     setSearchedBeers(masterBeers);
-//
-// }, [ABVFilter]);
-
-// filter beers based on radio button - NOT WORKING, JUST SHOWING RESET BEERS
-// const filterByABV = () => {
-//   const filteredByABVBeers = searchedBeers.filter((beer) => {
-//     return beer.abv > 6;
-//   });
-
-//   setABVBeers(filteredByABVBeers);
-
-// };
-
-// const filterByABV = () => {
-//   const filteredByABVBeers = [];
-//   searchedBeers.forEach((beer) => {
-//     if (beer.abv > 6) {
-//       filteredByABVBeers.push(beer);
-//     } else {
-//       return;
-//     }
-//   });
-
-// };
+TO DO
+Create a filter for the High Acidity
+Finish styling (add search icon on bar)
+Fix media query for screen size
