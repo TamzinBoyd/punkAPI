@@ -26,21 +26,14 @@
 
 @media screen and (max-width: 600px) {
   .navbar {
-    position: fixed;
-    top: 0;
-    background-color: $primary-color;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+    position: absolute;
     width: 100vw;
-    height: 10vh;
-    padding: 30px;
+    top: 0;
+    height: 300px;
     z-index: 1;
   }
 
   .logo {
-    width: 100vw;
-    font-size: 5em;
+    font-size: 3em;
   }
 }

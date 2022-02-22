@@ -11,15 +11,13 @@ import CardList from "./components/CardList/CardList";
 // When user ticks a filter box, apply the filter criteria to api call & re-render
 // needs to be able to take both values
 
-// PROBLEMS
-// want it to run when a searchTerm exists, however I need to pass this search term into the API reuqest and doesn't seem to work in the right order?
-// seems to render the filtered list straight away, rather than master beers?
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleBeers, setVisibileBeers] = useState([]);
   const [ABVFilter, setABVFilter] = useState(false);
   const [ageFilter, setAgeFilter] = useState(false);
+  const [PHFilter, setPH] = useState(false);
+  const [test, setTest] = useState([]);
 
   // Challenge #1 - If there's no searchTerm, then don't have beer_name in the url
   // Challenge #2 - If there's no brewed before selected, then don't include brewed_before in the url
@@ -27,14 +25,19 @@ const App = () => {
 
   // new API request to pass in values of search box &/or filter boxes
   const updateFilteredBeerList = async () => {
-    const beerList = await getFilteredBeers(ABVFilter, ageFilter, searchTerm);
+    const beerList = await getFilteredBeers(
+      ABVFilter,
+      ageFilter,
+      searchTerm,
+      PHFilter
+    );
     setVisibileBeers(beerList);
   };
   useEffect(() => {
     updateFilteredBeerList();
     if (visibleBeers.length === 0) {
     }
-  }, [searchTerm, ABVFilter, ageFilter]);
+  }, [searchTerm, ABVFilter, ageFilter, PHFilter]);
 
   return (
     <div className="App">
@@ -42,8 +45,10 @@ const App = () => {
         setSearchTerm={setSearchTerm}
         setABVFilter={setABVFilter}
         setAgeFilter={setAgeFilter}
+        setPH={setPH}
         ABVFilter={ABVFilter}
         ageFilter={ageFilter}
+        PHFilter={PHFilter}
       />
       {/* if state contains value then render the comp */}
       {visibleBeers && <CardList searchedBeers={visibleBeers} />}

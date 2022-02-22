@@ -10,7 +10,7 @@ export const getBeers = () => {
 };
 
 // Focus on building that queryString and sending the request off to Punk API to handle your searching/filtering for you :)
-export const getFilteredBeers = (abv, age, searchTerm) => {
+export const getFilteredBeers = (abv, age, searchTerm, PHFilter) => {
   // if there is only a search term
   if (searchTerm && abv === false && age === false) {
     return fetch(`${API_URL}?beer_name=${searchTerm}`)
@@ -74,11 +74,21 @@ export const getFilteredBeers = (abv, age, searchTerm) => {
       .catch((error) => console.error(error));
   }
   // if search is reset
-  if (!searchTerm && (abv === false) & (age === false)) {
+  else if (!searchTerm && (abv === false) & (age === false)) {
     return fetch(`${API_URL}`)
       .then((response) => response.json())
       .then((respJason) => {
         return respJason;
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // if ph filter ticked
+  else if (PHFilter === true) {
+    return fetch(`${API_URL}`)
+      .then((response) => response.json())
+      .then((respJason) => {
+        console.log(respJason);
       })
       .catch((error) => console.error(error));
   }

@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./CheckBox.module.scss";
 
 const CheckBox = (props) => {
-  const { setABVFilter, setAgeFilter, ABVFilter, ageFilter } = props;
+  const { setABVFilter, setAgeFilter, ABVFilter, ageFilter, setPH, PHFilter } =
+    props;
 
   const handleClickABV = (e) => {
     if (ABVFilter === true) {
@@ -17,6 +18,14 @@ const CheckBox = (props) => {
       setAgeFilter(false);
     } else if (ageFilter === false) {
       setAgeFilter(true);
+    }
+  };
+
+  const handleClickPH = (e) => {
+    if (PHFilter === true) {
+      setPH(false);
+    } else if (PHFilter === false) {
+      setPH(true);
     }
   };
 
@@ -39,15 +48,17 @@ const CheckBox = (props) => {
             handleClickAge(e.target.value);
           }}
         />
-        <span className={styles.test}>Filter for beers brewed before 2010</span>
+        <span>Filter for beers brewed before 2010</span>
       </label>
-      <input
-        type="checkbox"
-
-        // onClick={(e) => {
-        //   handleClick(e.target.value);
-        // }}
-      />
+      <label className={styles.boxes}>
+        <input
+          type="checkbox"
+          onClick={(e) => {
+            handleClickPH(e.target.value);
+          }}
+        />
+        <span>Filter for beers with PH below 4</span>
+      </label>
     </form>
   );
 };
