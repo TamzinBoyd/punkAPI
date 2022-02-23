@@ -1,13 +1,12 @@
 import React from "react";
-import Card from "./Card";
-import CardList from "../CardList/CardList";
+import NotFound from "./NotFound";
 
 import { shallow } from "enzyme";
 
-describe("Card tests", () => {
+describe("NotFound tests", () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Card searchedBeers={searchedBeers} beer={CardList} />);
+    component = shallow(<NotFound />);
   });
 
   it("should render", () => {

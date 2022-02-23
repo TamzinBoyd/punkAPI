@@ -17,7 +17,7 @@ const Card = (props) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.image}>
+      <div className={styles.image_container}>
         <img src={beer.image_url}></img>
       </div>
       <h1>{beerName}</h1>

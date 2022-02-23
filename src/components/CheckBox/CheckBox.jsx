@@ -38,7 +38,7 @@ const CheckBox = (props) => {
             handleClickABV(e.target.value);
           }}
         />
-        <span>Filter for beers over 6% ABV</span>
+        <span>Over 6% ABV</span>
       </label>
 
       <label className={styles.boxes}>
@@ -48,7 +48,7 @@ const CheckBox = (props) => {
             handleClickAge(e.target.value);
           }}
         />
-        <span>Filter for beers brewed before 2010</span>
+        <span>Brewed before 2010</span>
       </label>
       <label className={styles.boxes}>
         <input
@@ -57,7 +57,7 @@ const CheckBox = (props) => {
             handleClickPH(e.target.value);
           }}
         />
-        <span>Filter for beers with PH below 4</span>
+        <span>PH below 4</span>
       </label>
     </form>
   );
