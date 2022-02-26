@@ -27,5 +27,8 @@ After looking at the API documentation I saw there was a pre-determined filter f
 
 I wanted the user to be able to add multiple filters alongside a search term so I decided to do an IF statement to determine what criteria was passed into the API request.
 
-TO DO
-Create a filter for the High Acidity
+There is no set URL option for the Acidity so this meant I needed to delve into each object returned by the API, map over it and filter to just return those which met the specified criteria.
+
+Once I was happy with the functionality it was time to get testing.
+
+I used Enzyme to test that each component rendered correctly.
