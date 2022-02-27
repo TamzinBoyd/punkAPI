@@ -34,5 +34,6 @@ Once I was happy with the functionality it was time to get testing.
 I used Enzyme to test that each component rendered correctly.
 
 TO DO
+-Not Found page is currently showing at the end of the page rather than just when triggered
 
 - Test more elements of the page and learn how to interact with the API results

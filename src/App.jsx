@@ -29,7 +29,6 @@ const App = () => {
 
   return (
     <>
-      <Routes />
       <div className="App">
         <NavBar
           setSearchTerm={setSearchTerm}
@@ -43,6 +42,9 @@ const App = () => {
         {/* if state contains value then render the comp */}
         {visibleBeers && <CardList searchedBeers={visibleBeers} />}
       </div>{" "}
+      <section>
+        <Routes />
+      </section>
     </>
   );
 };
