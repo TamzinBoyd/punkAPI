@@ -32,3 +32,7 @@ There is no set URL option for the Acidity so this meant I needed to delve into 
 Once I was happy with the functionality it was time to get testing.
 
 I used Enzyme to test that each component rendered correctly.
+
+TO DO
+
+- Test more elements of the page and learn how to interact with the API results
