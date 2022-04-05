@@ -2,31 +2,20 @@ import React from "react";
 import styles from "./CheckBox.module.scss";
 
 const CheckBox = (props) => {
-  const { setABVFilter, setAgeFilter, ABVFilter, ageFilter, setPH, PHFilter } =
+  const { setHasABVFilter, setHasAgeFilter, hasABV, hasAge, setHasPH, hasPH } =
     props;
 
   const handleClickABV = (e) => {
-    if (ABVFilter === true) {
-      setABVFilter(false);
-    } else if (ABVFilter === false) {
-      setABVFilter(true);
-    }
+    // if value is equal to false, which it starts as then switch it
+    !hasABV ? setHasABVFilter(!hasABV) : setHasABVFilter(!hasABV);
   };
 
   const handleClickAge = (e) => {
-    if (ageFilter === true) {
-      setAgeFilter(false);
-    } else if (ageFilter === false) {
-      setAgeFilter(true);
-    }
+    !hasAge ? setHasAgeFilter(!hasAge) : setHasAgeFilter(!hasAge);
   };
 
   const handleClickPH = (e) => {
-    if (PHFilter === true) {
-      setPH(false);
-    } else if (PHFilter === false) {
-      setPH(true);
-    }
+    !hasPH ? setHasPH(!hasPH) : setHasPH(!hasPH);
   };
 
   return (

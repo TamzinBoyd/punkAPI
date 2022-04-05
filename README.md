@@ -9,7 +9,7 @@ Options for user to filter on the following:
 
 FIRST STEPS
 
-Started by breaking the page into components and drew out a component tree:
+I Started by breaking the page into components and made a component tree:
 
 - NavBar
 - Search Box (need to pass in search term from input box and return matching beers)
@@ -33,7 +33,6 @@ Once I was happy with the functionality it was time to get testing.
 
 I used Enzyme to test that each component rendered correctly.
 
-TO DO
--Not Found page is currently showing at the end of the page rather than just when triggered
-
-- Test more elements of the page and learn how to interact with the API results
+IMPROVEMENTS
+API - make even more dry, instead do: if (searchTerm) filtereds... += 'beer_name=ddddd"
+Rename boolean states to is/has

@@ -6,12 +6,12 @@ import CheckBox from "../CheckBox/CheckBox";
 const NavBar = (props) => {
   const {
     setSearchTerm,
-    setABVFilter,
-    setAgeFilter,
-    ABVFilter,
-    ageFilter,
-    setPH,
-    PHFilter,
+    setHasABVFilter,
+    setHasAgeFilter,
+    hasABV,
+    hasAge,
+    setHasPH,
+    hasPH,
   } = props;
   return (
     <div className={styles.navbar}>
@@ -23,12 +23,12 @@ const NavBar = (props) => {
       />
 
       <CheckBox
-        setABVFilter={setABVFilter}
-        setAgeFilter={setAgeFilter}
-        ABVFilter={ABVFilter}
-        ageFilter={ageFilter}
-        PHFilter={PHFilter}
-        setPH={setPH}
+        setHasABVFilter={setHasABVFilter}
+        setHasAgeFilter={setHasAgeFilter}
+        hasABV={hasABV}
+        hasAge={hasAge}
+        hasPH={hasPH}
+        setHasPH={setHasPH}
       />
     </div>
   );
