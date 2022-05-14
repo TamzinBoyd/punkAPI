@@ -1,4 +1,5 @@
 BRIEF
+
 Create a searchable beer database using a public api.
 Needs to update page as you enter a letter in the search bar.
 Options for user to filter on the following:
@@ -7,7 +8,7 @@ Options for user to filter on the following:
 - Classic range (brewed before 2010)
 - High acidity (ph lower than 4)
 
-FIRST STEPS
+APPROACH
 
 I Started by breaking the page into components and made a component tree:
 
@@ -34,5 +35,6 @@ Once I was happy with the functionality it was time to get testing.
 I used Enzyme to test that each component rendered correctly.
 
 IMPROVEMENTS
+
 API - make even more dry, instead do: if (searchTerm) filtereds... += 'beer_name=ddddd"
 Rename boolean states to is/has
